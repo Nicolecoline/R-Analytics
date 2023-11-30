@@ -1,0 +1,59 @@
+---
+title: "RWorksheet#5_group(Arcenas_Cabana_Castigador_Deluna_Parrenas)"
+output: html_document
+date: "2023-11-29"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#1. Each group needs to extract the top 50 tv shows in Imdb.com. It will include the rank, the title of the tv show, tv rating, the number of people who voted, the number of episodes, the year it was released.
+```{r}
+library(rvest)
+library(httr)
+library(dplyr) 
+library(polite)
+
+url <- 'https://www.imdb.com/chart/toptv/?ref_=nv_tvv_250'
+session <- bow(url,
+               user_agent = "Educational")
+session
+```
+
+```{r}
+titleList <- scrape(session) %>%
+  html_nodes('h3.ipc-title__text') %>% 
+  html_text
+
+
+rating  <- scrape(session) %>%
+  html_nodes('span.ipc-rating-star--imdb')%>%
+  html_text
+
+num_epi_released <- scrape(session) %>%
+  html_nodes('div.sc-479faa3c-7.jXgjdT.cli-title-metadata')%>%
+  html_text
+
+```
+
+
+```{r}
+titleList_sub <- as.data.frame(titleList[2:51])
+
+ratings <- as.data.frame(rating[1:50])
+
+numOfepi <- as.data.frame(num_epi_released[1:50])
+
+head(titleList_sub)
+tail(titleList_sub)
+head(ratings)
+tail(ratings)
+str(num_epi_released)
+colnames(num_epi_released)
+```
+
+```{r}
+scrape_df <- data.frame(titleList_sub,ratings,numOfepi)
+names(scrape_df) <- c("Title","Ratings")
+
