@@ -56,4 +56,252 @@ colnames(num_epi_released)
 ```{r}
 scrape_df <- data.frame(titleList_sub,ratings,numOfepi)
 names(scrape_df) <- c("Title","Ratings")
+#2. From the 50 tv shows, select at least 5 tv shows to scrape the user reviews that will include the reviewer’s name, date of reviewed, user rating, title of the review, and text reviews.
+
+# 1. Breaking Bad
+url <- "https://www.imdb.com/title/tt0903747/reviews?ref_=tt_urv"
+webpage <- read_html(url)
+
+TitleShowBB <- c("Breaking Bad", "Breaking Bad", "Breaking Bad", "Breaking Bad", "Breaking Bad", 
+		 "Breaking Bad", "Breaking Bad", "Breaking Bad", "Breaking Bad", "Breaking Bad", 
+		 "Breaking Bad", "Breaking Bad", "Breaking Bad", "Breaking Bad", "Breaking Bad", 
+		 "Breaking Bad", "Breaking Bad", "Breaking Bad", "Breaking Bad", "Breaking Bad", 
+		 "Breaking Bad", "Breaking Bad", "Breaking Bad", "Breaking Bad", "Breaking Bad")
+DisplayNameBB <- webpage %>%
+  html_nodes("span.display-name-link") %>%
+  html_text()
+
+DateOfReviewBB <- webpage %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+RatingOfReviewBB <- webpage %>%
+  html_nodes("span.rating-other-user-rating") %>%
+  html_text()
+ 
+ReviewTitleBB <- webpage %>%
+  html_nodes("a.title") %>%
+  html_text()
+
+ReviewTextBB <- webpage %>%
+  html_nodes("div.text.show-more__control") %>%
+  html_text()
+
+TitleBB <- as.data.frame (TitleShowBB)
+DisplayNemBB <- as.data.frame (DisplayNameBB)
+DateOfRevBB <- as.data.frame (DateOfReviewBB)
+RateOfRevBB <- as.data.frame (RatingOfReviewBB)
+RevTitleBB <- as.data.frame (ReviewTitleBB)
+RevTextBB <- as.data.frame (ReviewTextBB)
+```
+
+```{r}
+# 2. Planet Earth II
+
+TitleShowPE2 <- c("Planet Earth II", "Planet Earth II", "Planet Earth II", "Planet Earth II", "Planet Earth II", 
+	          "Planet Earth II", "Planet Earth II", "Planet Earth II", "Planet Earth II", "Planet Earth II", 
+	          "Planet Earth II", "Planet Earth II", "Planet Earth II", "Planet Earth II", "Planet Earth II",
+	          "Planet Earth II", "Planet Earth II", "Planet Earth II", "Planet Earth II", "Planet Earth II",
+	          "Planet Earth II", "Planet Earth II", "Planet Earth II", "Planet Earth II", "Planet Earth II")
+
+
+DisplayNamePE2 <- webpage %>%
+  html_nodes("span.display-name-link") %>%
+  html_text()
+
+DateOfReviewPE2 <- webpage %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+RatingOfReviewPE2 <- webpage %>%
+  html_nodes("span.rating-other-user-rating") %>%
+  html_text()
+ 
+ReviewTitlePE2 <- webpage %>%
+  html_nodes("a.title") %>%
+  html_text()
+
+ReviewTextPE2 <- webpage %>%
+  html_nodes("div.text.show-more__control") %>%
+  html_text()
+
+TitlePE2 <- as.data.frame (TitleShowPE2)
+DisplayNemPE2 <- as.data.frame (DisplayNamePE2)
+DateOfRevPE2 <- as.data.frame (DateOfReviewPE2)
+RateOfRevPE2 <- as.data.frame (RatingOfReviewPE2)
+RevTitlePE2 <- as.data.frame (ReviewTitlePE2)
+RevTextPE2 <- as.data.frame (ReviewTextPE2)
+```
+
+```{r}
+# 3.Planet Earth
+
+TitleShowPE <- c("Planet Earth", "Planet Earth", "Planet Earth", "Planet Earth", "Planet Earth", 
+		 "Planet Earth", "Planet Earth", "Planet Earth", "Planet Earth", "Planet Earth", 
+		 "Planet Earth", "Planet Earth", "Planet Earth", "Planet Earth", "Planet Earth", 
+		 "Planet Earth", "Planet Earth", "Planet Earth", "Planet Earth", "Planet Earth", 
+		 "Planet Earth", "Planet Earth", "Planet Earth", "Planet Earth", "Planet Earth")
+
+DisplayNamePE <- webpage %>%
+  html_nodes("span.display-name-link") %>%
+  html_text()
+
+DateOfReviewPE <- webpage %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+RatingOfReviewPE <- webpage %>%
+  html_nodes("span.rating-other-user-rating") %>%
+  html_text()
+ 
+ReviewTitlePE <- webpage %>%
+  html_nodes("a.title") %>%
+  html_text()
+
+ReviewTextPE <- webpage %>%
+  html_nodes("div.text.show-more__control") %>%
+  html_text()
+
+TitlePE <- as.data.frame (TitleShowPE)
+DisplayNemPE <- as.data.frame (DisplayNamePE)
+DateOfRevPE <- as.data.frame (DateOfReviewPE)
+RateOfRevPE <- as.data.frame (RatingOfReviewPE)
+RevTitlePE <- as.data.frame (ReviewTitlePE)
+RevTextPE <- as.data.frame (ReviewTextPE)
+```
+
+```{r}
+# 4. Chernobyl
+
+TitleShowCher <- c("Chernobyl", "Chernobyl", "Chernobyl", "Chernobyl", "Chernobyl", 
+		   "Chernobyl", "Chernobyl", "Chernobyl", "Chernobyl", "Chernobyl", 
+		   "Chernobyl", "Chernobyl", "Chernobyl", "Chernobyl", "Chernobyl", 
+		   "Chernobyl", "Chernobyl", "Chernobyl", "Chernobyl", "Chernobyl", 
+		   "Chernobyl", "Chernobyl", "Chernobyl", "Chernobyl", "Chernobyl")
+
+DisplayNameCher <- webpage %>%
+  html_nodes("span.display-name-link") %>%
+  html_text()
+
+DateOfReviewCher <- webpage %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+RatingOfReviewCher <- webpage %>%
+  html_nodes("span.rating-other-user-rating") %>%
+  html_text()
+ 
+ReviewTitleCher <- webpage %>%
+  html_nodes("a.title") %>%
+  html_text()
+
+ReviewTextCher <- webpage %>%
+  html_nodes("div.text.show-more__control") %>%
+  html_text()
+
+TitleCher <- as.data.frame (TitleShowCher)
+DisplayNemCher <- as.data.frame (DisplayNameCher)
+DateOfRevCher <- as.data.frame (DateOfReviewCher)
+RateOfRevCher <- as.data.frame (RatingOfReviewCher)
+RevTitleCher <- as.data.frame (ReviewTitleCher)
+RevTextCher <- as.data.frame (ReviewTextCher)
+```
+
+```{r}
+# 5. Avatar: The Last Airbender
+
+TitleShowATLA <- c("Avatar: The Last Airbender", "Avatar: The Last Airbender", "Avatar: The Last Airbender", "Avatar: The Last Airbender", "Avatar: The Last Airbender", 
+                   "Avatar: The Last Airbender", "Avatar: The Last Airbender", "Avatar: The Last Airbender", "Avatar: The Last Airbender", "Avatar: The Last Airbender", 
+                   "Avatar: The Last Airbender", "Avatar: The Last Airbender", "Avatar: The Last Airbender", "Avatar: The Last Airbender", "Avatar: The Last Airbender", 
+                   "Avatar: The Last Airbender", "Avatar: The Last Airbender", "Avatar: The Last Airbender", "Avatar: The Last Airbender", "Avatar: The Last Airbender", 
+                   "Avatar: The Last Airbender", "Avatar: The Last Airbender", "Avatar: The Last Airbender", "Avatar: The Last Airbender", "Avatar: The Last Airbender")
+
+DisplayNameATLA <- webpage %>%
+  html_nodes("span.display-name-link") %>%
+  html_text()
+
+DateOfReviewATLA <- webpage %>%
+  html_nodes("span.review-date") %>%
+  html_text()
+
+RatingOfReviewATLA <- webpage %>%
+  html_nodes("span.rating-other-user-rating") %>%
+  html_text()
+ 
+ReviewTitleATLA <- webpage %>%
+  html_nodes("a.title") %>%
+  html_text()
+
+ReviewTextATLA <- webpage %>%
+  html_nodes("div.text.show-more__control") %>%
+  html_text()
+
+TitleATLA <- as.data.frame (TitleShowATLA)
+DisplayNemATLA<- as.data.frame (DisplayNameATLA)
+DateOfRevATLA <- as.data.frame (DateOfReviewATLA)
+RateOfRevATLA <- as.data.frame (RatingOfReviewATLA)
+RevTitleATLA <- as.data.frame (ReviewTitleATLA)
+RevTextATLA <- as.data.frame (ReviewTextATLA)
+```
+```{r}
+# ...
+
+# Combine the results for Breaking Bad
+BreakingBad <- data.frame(
+  Title = TitleShowBB[1:20],
+  DisplayName = DisplayNameBB[1:20],
+  Date_Of_Review = DateOfReviewBB[1:20],
+  Ratings = RatingOfReviewBB[1:20],
+  Review_Title = ReviewTitleBB[1:20],
+  Review_Text = ReviewTextBB[1:20]
+)
+
+# Repeat the same structure for the other shows (Planet Earth II, Planet Earth, Chernobyl, Avatar: The Last Airbender)
+
+# Combine the results for Planet Earth II
+PlanetEarthII <- data.frame(
+  Title = TitleShowPE2[1:20],
+  DisplayName = DisplayNamePE2[1:20],
+  Date_Of_Review = DateOfReviewPE2[1:20],
+  Ratings = RatingOfReviewPE2[1:20],
+  Review_Title = ReviewTitlePE2[1:20],
+  Review_Text = ReviewTextPE2[1:20]
+)
+
+# Combine the results for Planet Earth
+PlanetEarth <- data.frame(
+  Title = TitleShowPE[1:20],
+  DisplayName = DisplayNamePE[1:20],
+  Date_Of_Review = DateOfReviewPE[1:20],
+  Ratings = RatingOfReviewPE[1:20],
+  Review_Title = ReviewTitlePE[1:20],
+  Review_Text = ReviewTextPE[1:20]
+)
+
+# Combine the results for Chernobyl
+Chernobyl <- data.frame(
+  Title = TitleShowCher[1:20],
+  DisplayName = DisplayNameCher[1:20],
+  Date_Of_Review = DateOfReviewCher[1:20],
+  Ratings = RatingOfReviewCher[1:20],
+  Review_Title = ReviewTitleCher[1:20],
+  Review_Text = ReviewTextCher[1:20]
+)
+
+# Combine the results for Avatar: The Last Airbender
+Avatar <- data.frame(
+  Title = TitleShowATLA[1:20],
+  DisplayName = DisplayNameATLA[1:20],
+  Date_Of_Review = DateOfReviewATLA[1:20],
+  Ratings = RatingOfReviewATLA[1:20],
+  Review_Title = ReviewTitleATLA[1:20],
+  Review_Text = ReviewTextATLA[1:20]
+)
+
+# Combine all shows into a single data frame
+All_Shows_Reviews <- rbind(BreakingBad, PlanetEarthII, PlanetEarth, Chernobyl, Avatar)
+
+View(All_Shows_Reviews)
+
+```
 
